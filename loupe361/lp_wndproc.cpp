@@ -73,7 +73,7 @@ BOOL filter_wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam, void*
 		}
 
 		// ウインドウのタイトルを変更
-		sprintf_s(title, "虫眼鏡 - %d倍 %s", nnn, fixed);
+		sprintf_s(title, LP_PLUGIN_NAME " - %d倍 %s", nnn, fixed);
 		SetWindowText(hwnd, (LPCTSTR)title);
 		break;
 
@@ -184,14 +184,15 @@ BOOL filter_wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam, void*
 			drag_pos.x = (int)((short)LOWORD(lparam));
 			drag_pos.y = (int)((short)HIWORD(lparam));
 			SetCursor(LoadCursor(NULL, IDC_SIZEALL)); // カーソル変更
+			::SetCapture(hwnd);
 		}
 		break;
 
 	case WM_LBUTTONUP:
-	case WM_NCMOUSEMOVE:
 		// ウインドウ上でのドラッグ終了
 		bDragFlagWin = FALSE;
 		bDragFlagEdit = FALSE;
+		::ReleaseCapture();
 		break;
 
 	case WM_ACTIVATE:
@@ -237,7 +238,7 @@ BOOL filter_wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam, void*
 		{
 			strcpy_s(fixed, " ");
 		}
-		sprintf_s(title, "虫眼鏡 - %d倍 %s", nnn, fixed);
+		sprintf_s(title, LP_PLUGIN_NAME " - %d倍 %s", nnn, fixed);
 		SetWindowText(hwnd, (LPCTSTR)title);
 		break;
 
@@ -251,7 +252,7 @@ BOOL filter_wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam, void*
 			{
 				// 縮小
 				nnn--;
-				sprintf_s(title, "虫眼鏡 - %d倍 %s", nnn, fixed);
+				sprintf_s(title, LP_PLUGIN_NAME " - %d倍 %s", nnn, fixed);
 				SetWindowText(hwnd, (LPCTSTR)title);
 				if (bufDC) disp(fp, editp, NULL);
 			}
@@ -264,7 +265,7 @@ BOOL filter_wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam, void*
 			{
 				// 拡大
 				nnn++;
-				sprintf_s(title, "虫眼鏡 - %d倍 %s", nnn, fixed);
+				sprintf_s(title, LP_PLUGIN_NAME " - %d倍 %s", nnn, fixed);
 				SetWindowText(hwnd, (LPCTSTR)title);
 				if (bufDC) disp(fp, editp, NULL);
 			}
@@ -280,7 +281,7 @@ BOOL filter_wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam, void*
 		{
 			// 縮小
 			nnn--;
-			sprintf_s(title, "虫眼鏡 - %d倍 %s", nnn, fixed);
+			sprintf_s(title, LP_PLUGIN_NAME " - %d倍 %s", nnn, fixed);
 			SetWindowText(hwnd, (LPCTSTR)title);
 			if (bufDC) disp(fp, editp, NULL);
 		}
@@ -289,12 +290,12 @@ BOOL filter_wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam, void*
 		break;
 
 	case WM_LBUTTONDBLCLK:
-		// ウインドウ上で左クリック
+		// ウインドウ上で左ダブルクリック
 		if (nnn < MAG_MAX)
 		{
 			// 拡大
 			nnn++;
-			sprintf_s(title, "虫眼鏡 - %d倍 %s", nnn, fixed);
+			sprintf_s(title, LP_PLUGIN_NAME " - %d倍 %s", nnn, fixed);
 			SetWindowText(hwnd, (LPCTSTR)title);
 			if (bufDC) disp(fp, editp, NULL);
 		}
