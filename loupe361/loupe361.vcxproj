@@ -96,7 +96,10 @@
       <ModuleDefinitionFile>loupe361.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) "C:\Program_Files_Portable\AviUtl\1.10-0.92\Plugins"</Command>
+      <Command>copy $(TargetPath) "C:\Program_Files_Portable\AviUtl\1.10-0.92\Plugins"
+copy $(TargetPath) "C:\Program_Files_Portable\AviUtl\1.00-0.92\Plugins"
+copy $(TargetPath) "C:\Program_Files_Portable\AviUtl\aviutl110 (1)\Plugins"
+copy $(TargetPath) "C:\Users\njotn\UserDirectory\AviUtl_Plugins&amp;Scripts\loupe361"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -117,7 +120,10 @@
       <ModuleDefinitionFile>loupe361.def</ModuleDefinitionFile>
     </Link>
     <PostBuildEvent>
-      <Command>copy $(TargetPath) "C:\Program_Files_Portable\AviUtl\1.10-0.92\Plugins"</Command>
+      <Command>copy $(TargetPath) "C:\Program_Files_Portable\AviUtl\1.10-0.92\Plugins"
+copy $(TargetPath) "C:\Program_Files_Portable\AviUtl\1.00-0.92\Plugins"
+copy $(TargetPath) "C:\Program_Files_Portable\AviUtl\aviutl110 (1)\Plugins"
+copy $(TargetPath) "C:\Users\njotn\UserDirectory\AviUtl_Plugins&amp;Scripts\loupe361"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">

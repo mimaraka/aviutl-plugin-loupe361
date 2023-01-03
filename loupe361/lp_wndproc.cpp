@@ -175,6 +175,7 @@ BOOL filter_wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam, void*
 		break;
 
 	case WM_LBUTTONDOWN:
+	case WM_MBUTTONDOWN:
 		// ウインドウ上でマウスボタンを押した
 		if (!bFixFlag)
 		{
@@ -189,6 +190,7 @@ BOOL filter_wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam, void*
 		break;
 
 	case WM_LBUTTONUP:
+	case WM_MBUTTONUP:
 		// ウインドウ上でのドラッグ終了
 		bDragFlagWin = FALSE;
 		bDragFlagEdit = FALSE;
@@ -225,22 +227,22 @@ BOOL filter_wndproc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam, void*
 		}
 		break;
 
-	case WM_MBUTTONUP:
-		// 中クリックされたので座標固定
-		bFixFlag = !bFixFlag;
-		if (bFixFlag)
-		{
-			strcpy_s(fixed, "[座標固定]");
-			bDragFlagWin = FALSE;
-			bDragFlagEdit = FALSE;
-		}
-		else
-		{
-			strcpy_s(fixed, " ");
-		}
-		sprintf_s(title, LP_PLUGIN_NAME " - %d倍 %s", nnn, fixed);
-		SetWindowText(hwnd, (LPCTSTR)title);
-		break;
+	//case WM_LBUTTONUP:
+	//	// 中クリックされたので座標固定
+	//	bFixFlag = !bFixFlag;
+	//	if (bFixFlag)
+	//	{
+	//		strcpy_s(fixed, "[座標固定]");
+	//		bDragFlagWin = FALSE;
+	//		bDragFlagEdit = FALSE;
+	//	}
+	//	else
+	//	{
+	//		strcpy_s(fixed, " ");
+	//	}
+	//	sprintf_s(title, LP_PLUGIN_NAME " - %d倍 %s", nnn, fixed);
+	//	SetWindowText(hwnd, (LPCTSTR)title);
+	//	break;
 
 	case WM_MOUSEWHEEL:
 	{
